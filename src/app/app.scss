@@ -1,0 +1,20 @@
+header {
+  background-color: #333;
+  padding: 1rem;
+  color: white;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 1rem;
+}
