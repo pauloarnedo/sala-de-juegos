@@ -1,1 +1,20 @@
-<h1>Bienvenido a la Sala de Juegos</h1> <p>¡Navega por la aplicación usando los enlaces de arriba!</p>
+<div class="home-container" *ngIf="authService.user$ | async as user; else notLoggedIn">
+
+  <div class="welcome-section">
+    <h2>¡Bienvenido, {{ user.email }}!</h2>
+    <button (click)="onLogout()">Cerrar Sesión</button>
+  </div>
+
+  <div class="games-section">
+    <h3>Selecciona un Juego</h3>
+    <p>Próximamente: Ahorcado, Mayor o Menor...</p>
+  </div>
+
+</div>
+
+<ng-template #notLoggedIn>
+  <div class="not-logged-in-message">
+    <h2>Bienvenido a la Sala de Juegos</h2>
+    <p>Por favor, <a routerLink="/login">inicia sesión</a> o <a routerLink="/registro">regístrate</a> para jugar.</p>
+  </div>
+</ng-template>

@@ -1,6 +1,6 @@
 <div class="form-container">
-  <h2>Iniciar Sesión</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2>Registro de Nuevo Usuario</h2>
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
     <div class="form-field">
       <label for="email">Email</label>
       <input type="email" id="email" formControlName="email">
@@ -10,13 +10,8 @@
       <input type="password" id="password" formControlName="password">
     </div>
 
-    <button type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+    <button type="submit" [disabled]="!registroForm.valid">Registrarse</button>
 
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
   </form>
-
-  <div class="quick-access">
-    <h3>Accesos Rápidos</h3>
-    <button (click)="fillForm('test@test.com', '123456')">Usuario de Prueba</button>
-  </div>
 </div>

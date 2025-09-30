@@ -5,46 +5,40 @@ import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-registro',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './login.html',
-  styleUrl: './login.scss'
+  templateUrl: './registro.html',
+  styleUrl: './registro.scss'
 })
-export class Login {
+export class Registro {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
 
-  loginForm: FormGroup;
+  registroForm: FormGroup;
   errorMessage: string = '';
 
   constructor() {
-    this.loginForm = this.fb.group({
+    this.registroForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   async onSubmit() {
-    if (this.loginForm.valid) {
+    if (this.registroForm.valid) {
       try {
-        const userCredential = await this.authService.login(this.loginForm.value);
-        if (userCredential.user) {
-          await this.authService.logUserLogin(userCredential.user.email!);
-          this.router.navigate(['/home']);
-        }
+        await this.authService.register(this.registroForm.value);
+        this.router.navigate(['/home']);
       } catch (error: any) {
-        this.errorMessage = 'Email o contraseña incorrectos.';
+        if (error.code === 'auth/email-already-in-use') {
+          this.errorMessage = 'El correo electrónico ya está registrado.';
+        } else {
+          this.errorMessage = 'Ocurrió un error al registrar el usuario.';
+        }
         console.error(error);
       }
     }
-  }
-
-  fillForm(email: string, pass: string) {
-    this.loginForm.patchValue({
-      email: email,
-      password: pass
-    });
   }
 }

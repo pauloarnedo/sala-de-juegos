@@ -1,8 +1,13 @@
 <header>
   <nav>
     <a routerLink="/home">Home</a>
-    <a routerLink="/login">Login</a>
     <a routerLink="/quien-soy">Quién Soy</a>
+
+    <ng-container *ngIf="!(authService.user$ | async)">
+      <a routerLink="/login">Login</a>
+      <a routerLink="/registro">Registro</a>
+    </ng-container>
+
   </nav>
 </header>
 
