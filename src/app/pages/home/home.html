@@ -1,13 +1,23 @@
 <div class="home-container" *ngIf="authService.user$ | async as user; else notLoggedIn">
-
+  
   <div class="welcome-section">
     <h2>¡Bienvenido, {{ user.email }}!</h2>
     <button (click)="onLogout()">Cerrar Sesión</button>
   </div>
+  <div class="main-menu">
+    <div class="games-section">
+      <h3>Selecciona un Juego</h3>
+      <div class="game-links">
+        <a routerLink="/games/ahorcado" class="game-link">Ahorcado</a>
+        <a routerLink="/games/mayor-menor" class="game-link">Mayor o Menor</a>
+      </div>
+    </div>
 
-  <div class="games-section">
-    <h3>Selecciona un Juego</h3>
-    <p>Próximamente: Ahorcado, Mayor o Menor...</p>
+    <div class="chat-section">
+      <h3>Sala de Chat</h3>
+      <p>Comunícate con otros jugadores.</p>
+      <a routerLink="/chat" class="chat-link">Ir al Chat</a>
+    </div>
   </div>
 
 </div>

@@ -1,0 +1,57 @@
+.game-container {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.word-display {
+  font-size: 2.5rem;
+  letter-spacing: 0.5rem;
+  margin: 20px 0;
+}
+
+.mistakes {
+  font-size: 1.2rem;
+  color: #e74c3c;
+}
+
+.keyboard {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.keyboard button {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin:0 5px;
+
+  &:disabled {
+    background-color: #95a5a6;
+    color: white;
+    cursor: not-allowed;
+  }
+}
+
+.game-over {
+  margin-top: 30px;
+}
+
+.game-over button {
+  padding: 10px 20px;
+  font-size: 1rem;
+}

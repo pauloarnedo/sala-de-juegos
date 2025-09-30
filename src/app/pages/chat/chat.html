@@ -1,0 +1,16 @@
+<div class="chat-container">
+  <h1>Sala de Chat</h1>
+  <div class="messages-area">
+    <div *ngFor="let msg of messages$ | async" class="message">
+      <div class="message-header">
+        <span class="user">{{ msg.user }}</span>
+        <span class="timestamp">{{ msg.createdAt?.toDate() | date:'shortTime' }}</span>
+      </div>
+      <p class="text">{{ msg.text }}</p>
+    </div>
+  </div>
+  <div class="input-area">
+    <input [formControl]="messageControl" (keyup.enter)="sendMessage()" placeholder="Escribe tu mensaje...">
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+</div>

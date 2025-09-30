@@ -1,0 +1,19 @@
+.game-container { text-align: center; }
+.card-display { margin: 20px 0; }
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 2rem;
+  background-color: white;
+  &.red { color: red; }
+  &.black { color: black; }
+}
+.suit { font-size: 1.5rem; }
+.message { margin-top: 15px; font-style: italic; }
+.controls button, .game-over button { margin: 5px; padding: 10px 20px; }

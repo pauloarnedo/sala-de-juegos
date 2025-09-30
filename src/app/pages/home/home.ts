@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
-import { AsyncPipe, NgIf } from '@angular/common'; // Importa AsyncPipe y NgIf
+import { Router, RouterLink } from '@angular/router';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, NgIf], // Añádelos
+  imports: [AsyncPipe, NgIf, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

@@ -1,0 +1,28 @@
+<div class="game-container">
+  <h1>Mayor o Menor</h1>
+  <div class="score-board">
+    Puntaje: {{ puntaje }}
+  </div>
+
+  <div class="card-display" *ngIf="!juegoTerminado">
+    <p>Carta actual:</p>
+    <div class="card {{ cartaActual.palo === '♥' || cartaActual.palo === '♦' ? 'red' : 'black' }}">
+      <span class="value">{{ cartaActual.valor }}</span>
+      <span class="suit">{{ cartaActual.palo }}</span>
+    </div>
+    <p class="message">{{ mensaje }}</p>
+  </div>
+  
+  <div class="controls" *ngIf="!juegoTerminado">
+    <p>¿La próxima carta será...?</p>
+    <button (click)="hacerSuposicion('mayor')">Mayor</button>
+    <button (click)="hacerSuposicion('menor')">Menor</button>
+  </div>
+
+  <div class="game-over" *ngIf="juegoTerminado">
+    <h2>Juego Terminado</h2>
+    <p class="message">{{ mensaje }}</p>
+    <p>Tu puntaje final es: {{ puntaje }}</p>
+    <button (click)="iniciarJuego()">Jugar de Nuevo</button>
+  </div>
+</div>

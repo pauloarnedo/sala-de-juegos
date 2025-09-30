@@ -1,0 +1,24 @@
+<div class="game-container">
+  <h1>Juego del Ahorcado</h1>
+
+  <div class="game-display">
+    <p class="word-display">{{ palabraMostrada }}</p>
+    <p class="mistakes">Errores: {{ errores }} / {{ maximoErrores }}</p>
+  </div>
+
+  <div class="keyboard" *ngIf="!juegoTerminado">
+    <div *ngFor="let fila of filasTeclado" class="keyboard-row">
+        <button 
+        *ngFor="let letra of fila" 
+        (click)="adivinarLetra(letra)"
+        [disabled]="letrasAdivinadas.has(letra)">
+        {{ letra }}
+        </button>
+    </div>
+  </div>
+
+  <div class="game-over" *ngIf="juegoTerminado">
+    <h2>{{ mensajeDeEstado }}</h2>
+    <button (click)="iniciarJuego()">Jugar de Nuevo</button>
+  </div>
+</div>
