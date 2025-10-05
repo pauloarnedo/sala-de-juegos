@@ -4,8 +4,7 @@ import { DeckService, Carta } from '../../../services/deck';
 
 @Component({
   selector: 'app-mayor-menor',
-  standalone: true,
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './mayor-menor.html',
   styleUrl: './mayor-menor.scss'
 })

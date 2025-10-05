@@ -17,14 +17,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/chat/chat').then(m => m.Chat)
   },
   {
-    path: 'games/ahorcado',
+    path: 'games',
     canActivate: [authGuard],
-    loadComponent: () => import('./pages/games/ahorcado/ahorcado').then(m => m.Ahorcado)
-  },
-  {
-    path: 'games/mayor-menor',
-    canActivate: [authGuard],
-    loadComponent: () => import('./pages/games/mayor-menor/mayor-menor').then(m => m.MayorMenor)
+    loadChildren: () => import('./pages/games/games-module').then(m => m.GamesModule)
   },
   { path: '**', redirectTo: '/home' }
 ];

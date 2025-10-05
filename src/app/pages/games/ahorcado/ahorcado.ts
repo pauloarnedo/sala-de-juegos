@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ahorcado',
-  standalone: true,
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './ahorcado.html',
   styleUrl: './ahorcado.scss'
 })
