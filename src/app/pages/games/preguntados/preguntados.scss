@@ -1,0 +1,74 @@
+.game-container {
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pokemon-image-container {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  img {
+    width: 180px;
+    height: 180px;
+    image-rendering: pixelated; // Para que se vea estilo retro
+  }
+
+  .loader {
+    font-size: 1.2rem;
+  }
+}
+
+.options-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+button {
+  padding: 1rem;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.message-container {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  .correct { color: #2ecc71; }
+  .incorrect { color: #e74c3c; }
+}
+
+// ... tus otros estilos ...
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.lives {
+  color: #e74c3c; // Rojo para el corazón de las vidas
+}
+
+.game-over {
+  margin-top: 2rem;
+  p {
+    font-size: 1.2rem;
+  }
+  button {
+    margin-top: 1rem;
+  }
+}

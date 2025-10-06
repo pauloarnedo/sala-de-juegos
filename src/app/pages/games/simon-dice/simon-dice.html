@@ -1,0 +1,18 @@
+<div class="game-container">
+  <h1>Simón Dice</h1>
+  <div class="status-panel">
+    <p class="message">{{ mensaje }}</p>
+  </div>
+  
+  <div class="simon-board">
+    <div 
+      *ngFor="let color of colores"
+      class="color-pad {{ color }}"
+      [class.active]="color === colorActivo"
+      (click)="manejarClic(color)">
+    </div>
+  </div>
+
+  <button *ngIf="juegoTerminado && nivel === 0" (click)="iniciarJuego()">Comenzar</button>
+  <button *ngIf="juegoTerminado && nivel > 0" (click)="iniciarJuego()">Jugar de Nuevo</button>
+</div>

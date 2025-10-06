@@ -1,0 +1,45 @@
+.game-container {
+  text-align: center;
+}
+
+.status-panel {
+  margin: 1rem;
+  font-size: 1.5rem;
+  height: 2rem;
+}
+
+.simon-board {
+  display: grid;
+  grid-template-columns: 150px 150px;
+  grid-template-rows: 150px 150px;
+  gap: 20px;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.color-pad {
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+
+  &.verde { background-color: #2ecc71; }
+  &.rojo { background-color: #e74c3c; }
+  &.amarillo { background-color: #f1c40f; }
+  &.azul { background-color: #3498db; }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.active {
+    opacity: 1;
+    transform: scale(1.05);
+    border: 3px solid white;
+  }
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+}

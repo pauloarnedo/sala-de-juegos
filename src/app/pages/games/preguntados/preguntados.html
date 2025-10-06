@@ -1,0 +1,37 @@
+<div class="game-container">
+  <h1>¿Quién es este Pokémon?</h1>
+
+  <div *ngIf="!juegoIniciado" class="start-game">
+    <button (click)="iniciarJuego()">Comenzar a Jugar</button>
+  </div>
+  
+  <div *ngIf="juegoIniciado">
+    <div *ngIf="!juegoTerminado">
+      <div class="stats-container"> <div class="score">Puntaje: {{ puntaje }}</div>
+        <div class="lives">Vidas: {{ vidas }} ♥</div> </div>
+
+      <div class="pokemon-image-container">
+        <img *ngIf="pokemonPregunta" [src]="pokemonPregunta.sprites.front_default" alt="Pokémon a adivinar">
+        <div *ngIf="!pokemonPregunta" class="loader">Cargando...</div>
+      </div>
+
+      <div class="options-container" *ngIf="pokemonPregunta">
+        <button *ngFor="let opcion of opciones" (click)="seleccionarRespuesta(opcion)">
+          {{ opcion }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="juegoTerminado" class="game-over">
+      <h2>¡Juego Terminado!</h2>
+      <p>Tu puntaje final fue: {{ puntaje }}</p>
+      <button (click)="iniciarJuego()">Jugar de Nuevo</button>
+    </div>
+
+    <div class="message-container" *ngIf="mensaje">
+      <p [ngClass]="{'correct': mensaje === '¡Correcto!', 'incorrect': mensaje.startsWith('¡Incorrecto!')}">
+        {{ mensaje }}
+      </p>
+    </div>
+  </div>
+</div>
