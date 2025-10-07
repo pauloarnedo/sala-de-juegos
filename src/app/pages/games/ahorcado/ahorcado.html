@@ -2,23 +2,29 @@
   <h1>Juego del Ahorcado</h1>
 
   <div class="game-display">
+    <p class="score">Puntaje: {{ puntaje }}</p>
+    
     <p class="word-display">{{ palabraMostrada }}</p>
     <p class="mistakes">Errores: {{ errores }} / {{ maximoErrores }}</p>
   </div>
 
-  <div class="keyboard" *ngIf="!juegoTerminado">
+  <div class="controls" *ngIf="puedeFinalizar && !juegoTerminado">
+    <button (click)="finalizarPartida()">Finalizar Partida</button>
+  </div>
+
+  <div class="keyboard" *ngIf="!juegoTerminado && mensajeDeEstado === ''">
     <div *ngFor="let fila of filasTeclado" class="keyboard-row">
-        <button 
+      <button 
         *ngFor="let letra of fila" 
         (click)="adivinarLetra(letra)"
         [disabled]="letrasAdivinadas.has(letra)">
         {{ letra }}
-        </button>
+      </button>
     </div>
   </div>
 
-  <div class="game-over" *ngIf="juegoTerminado">
-    <h2>{{ mensajeDeEstado }}</h2>
-    <button (click)="iniciarJuego()">Jugar de Nuevo</button>
+  <div class="game-over">
+    <h2 *ngIf="mensajeDeEstado">{{ mensajeDeEstado }}</h2>
+    <button *ngIf="juegoTerminado" (click)="iniciarPartida()">Jugar de Nuevo</button>
   </div>
 </div>

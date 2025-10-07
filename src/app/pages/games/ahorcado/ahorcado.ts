@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ResultadosService } from '../../../services/resultados';
 
 @Component({
   selector: 'app-ahorcado',
@@ -8,6 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ahorcado.scss'
 })
 export class Ahorcado {
+  private resultadosService = inject(ResultadosService);
   private listaDePalabras = ['ANGULAR', 'COMPONENTE', 'SERVICIO', 'DIRECTIVA', 'PROMESA', 'OBSERVABLE'];
   
   palabraAAdivinar = '';
@@ -23,24 +25,37 @@ export class Ahorcado {
   juegoTerminado = false;
   mensajeDeEstado = '';
 
+  // --- NUEVAS VARIABLES ---
+  puntaje = 0;
+  puedeFinalizar = false; // Controla la visibilidad del botón "Finalizar Partida"
+
   constructor() {
-    this.iniciarJuego();
+    this.iniciarPartida();
   }
 
-  iniciarJuego() {
+  // Inicia una sesión de juego completa, reseteando el puntaje
+  iniciarPartida() {
+    this.puntaje = 0;
+    this.iniciarNuevaPalabra();
+  }
+
+  // Prepara una nueva palabra, pero mantiene el puntaje actual
+  private iniciarNuevaPalabra() {
     this.palabraAAdivinar = this.listaDePalabras[Math.floor(Math.random() * this.listaDePalabras.length)];
     this.palabraMostrada = '_ '.repeat(this.palabraAAdivinar.length);
     this.letrasAdivinadas.clear();
     this.errores = 0;
     this.juegoTerminado = false;
     this.mensajeDeEstado = '';
+    this.puedeFinalizar = true; // <-- Permite finalizar la partida al inicio de una palabra
   }
 
   adivinarLetra(letra: string) {
     if (this.juegoTerminado || this.letrasAdivinadas.has(letra)) {
       return;
     }
-
+    
+    this.puedeFinalizar = false; // <-- Oculta el botón después del primer intento
     this.letrasAdivinadas.add(letra);
 
     if (this.palabraAAdivinar.includes(letra)) {
@@ -50,6 +65,13 @@ export class Ahorcado {
       this.errores++;
       this.verificarDerrota();
     }
+  }
+
+  // Nueva función para el botón "Finalizar Partida"
+  finalizarPartida() {
+    this.juegoTerminado = true;
+    this.mensajeDeEstado = `¡Partida finalizada! Tu puntaje final es: ${this.puntaje}`;
+    this.resultadosService.agregarResultado('Ahorcado', this.puntaje);
   }
 
   private actualizarPalabraMostrada() {
@@ -62,8 +84,10 @@ export class Ahorcado {
 
   private verificarVictoria() {
     if (!this.palabraMostrada.includes('_')) {
-      this.juegoTerminado = true;
-      this.mensajeDeEstado = '¡Felicidades, has ganado!';
+      // En lugar de terminar el juego, suma puntos y pasa a la siguiente palabra
+      this.puntaje += 1; // 1 punto por palabra adivinada
+      this.mensajeDeEstado = '¡Palabra correcta! Cargando siguiente...';
+      setTimeout(() => this.iniciarNuevaPalabra(), 2000); // Espera 2 seg y carga otra palabra
     }
   }
 
@@ -71,6 +95,7 @@ export class Ahorcado {
     if (this.errores >= this.maximoErrores) {
       this.juegoTerminado = true;
       this.mensajeDeEstado = `¡Has perdido! La palabra era: ${this.palabraAAdivinar}`;
+      this.resultadosService.agregarResultado('Ahorcado', this.puntaje);
     }
   }
 }

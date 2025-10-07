@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DeckService, Carta } from '../../../services/deck';
+import { ResultadosService } from '../../../services/resultados';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -10,6 +11,7 @@ import { DeckService, Carta } from '../../../services/deck';
 })
 export class MayorMenor {
   private deckService = inject(DeckService);
+  private resultadosService = inject(ResultadosService);
 
   mazo: Carta[] = [];
   cartaActual!: Carta;
@@ -63,6 +65,9 @@ export class MayorMenor {
   }
 
   private terminarJuego() {
-    this.juegoTerminado = true;
+    if (!this.juegoTerminado) {
+      this.juegoTerminado = true;
+      this.resultadosService.agregarResultado('Mayor o Menor', this.puntaje);
+    }
   }
 }

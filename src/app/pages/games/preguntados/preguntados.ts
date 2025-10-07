@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonService, Pokemon } from '../../../services/pokemon';
+import { ResultadosService } from '../../../services/resultados';
 
 @Component({
   selector: 'app-preguntados',
@@ -10,20 +11,21 @@ import { PokemonService, Pokemon } from '../../../services/pokemon';
 })
 export class Preguntados {
   private pokemonService = inject(PokemonService);
+  private resultadosService = inject(ResultadosService);
 
   pokemonPregunta?: Pokemon;
   opciones: string[] = [];
   mensaje = '';
   puntaje = 0;
-  vidas = 3; // <-- NUEVA VARIABLE
-  juegoTerminado = false; // <-- NUEVA VARIABLE
+  vidas = 3; 
+  juegoTerminado = false;
   juegoIniciado = false;
 
   iniciarJuego() {
     this.juegoIniciado = true;
-    this.juegoTerminado = false; // <-- REINICIAMOS ESTADO
+    this.juegoTerminado = false;
     this.puntaje = 0;
-    this.vidas = 3; // <-- REINICIAMOS VIDAS
+    this.vidas = 3;
     this.cargarNuevaPregunta();
   }
 
@@ -42,28 +44,27 @@ export class Preguntados {
     if (opcionSeleccionada === this.pokemonPregunta?.name) {
       this.puntaje++;
       this.mensaje = '¡Correcto!';
-      this.esperarYContinuar(); // <-- LLAMAMOS A UNA NUEVA FUNCIÓN
+      this.esperarYContinuar();
     } else {
-      this.vidas--; // <-- RESTAMOS UNA VIDA
+      this.vidas--;
       this.mensaje = `¡Incorrecto! La respuesta era: ${this.pokemonPregunta?.name}`;
       if (this.vidas <= 0) {
-        this.terminarJuego(); // <-- SI NO HAY VIDAS, TERMINA EL JUEGO
+        this.terminarJuego();
       } else {
-        this.esperarYContinuar(); // <-- SI QUEDAN VIDAS, CONTINÚA
+        this.esperarYContinuar();
       }
     }
   }
 
-  // Nueva función para manejar la pausa entre preguntas
   private esperarYContinuar() {
     setTimeout(() => {
       this.cargarNuevaPregunta();
     }, 2000);
   }
 
-  // Nueva función para el fin del juego
   private terminarJuego() {
     this.juegoTerminado = true;
     this.mensaje = `¡Juego Terminado! Tu puntaje final es: ${this.puntaje}`;
+    this.resultadosService.agregarResultado('Preguntados', this.puntaje);
   }
 }

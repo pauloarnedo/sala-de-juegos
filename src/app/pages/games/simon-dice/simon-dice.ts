@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ResultadosService } from '../../../services/resultados';
 
 @Component({
   selector: 'app-simon-dice',
@@ -8,13 +9,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./simon-dice.scss']
 })
 export class SimonDice {
+  private resultadosService = inject(ResultadosService);
   colores = ['verde', 'rojo', 'amarillo', 'azul'];
   secuencia: string[] = [];
   secuenciaJugador: string[] = [];
   nivel = 0;
   mensaje = 'Presiona "Comenzar" para jugar';
   juegoActivo = false;
-  juegoTerminado = true; // <-- NUEVA VARIABLE, empieza en true para mostrar el botón "Comenzar"
+  juegoTerminado = true;
   colorActivo = '';
 
   private delay(ms: number) {
@@ -24,7 +26,7 @@ export class SimonDice {
   iniciarJuego() {
     this.secuencia = [];
     this.nivel = 0;
-    this.juegoTerminado = false; // <-- El juego ya no está "terminado"
+    this.juegoTerminado = false;
     this.siguienteNivel();
   }
 
@@ -74,6 +76,8 @@ export class SimonDice {
   private terminarJuego(mensajeFinal: string) {
     this.mensaje = `${mensajeFinal} Llegaste al nivel ${this.nivel}.`;
     this.juegoActivo = false;
-    this.juegoTerminado = true; // <-- Marcamos el juego como "terminado"
+    this.juegoTerminado = true;
+    const puntaje = this.nivel > 0 ? this.nivel - 1 : 0;
+    this.resultadosService.agregarResultado('Simón Dice', puntaje);
   }
 }
