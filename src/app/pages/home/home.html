@@ -1,4 +1,4 @@
-<div class="home-container" *ngIf="authService.user$ | async as user; else notLoggedIn">
+<div class="home-container bloque-contenedor" *ngIf="authService.user$ | async as user; else notLoggedIn">
 
   <div class="welcome-section">
     <h2>¡Bienvenido, {{ user.email }}!</h2>

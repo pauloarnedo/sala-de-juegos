@@ -1,0 +1,95 @@
+<div class="encuesta-container bloque-contenedor">
+  <h1>Encuesta de Satisfacción</h1>
+  <p>Tu opinión nos ayuda a mejorar. Por favor, completa los siguientes campos.</p>
+
+  <form [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta()" *ngIf="!mensajeEnviado; else gracias">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" formControlName="nombre">
+        <div *ngIf="form['nombre'].invalid && form['nombre'].touched" class="error">
+          <span *ngIf="form['nombre'].errors?.['required']">El nombre es requerido.</span>
+          <span *ngIf="form['nombre'].errors?.['pattern']">Solo se permiten letras.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" formControlName="apellido">
+        <div *ngIf="form['apellido'].invalid && form['apellido'].touched" class="error">
+          <span *ngIf="form['apellido'].errors?.['required']">El apellido es requerido.</span>
+          <span *ngIf="form['apellido'].errors?.['pattern']">Solo se permiten letras.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" formControlName="edad">
+        <div *ngIf="form['edad'].invalid && form['edad'].touched" class="error">
+          <span *ngIf="form['edad'].errors?.['required']">La edad es requerida.</span>
+          <span *ngIf="form['edad'].errors?.['min'] || form['edad'].errors?.['max']">La edad debe estar entre 18 y 99 años.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono (solo números, máx 10)</label>
+        <input type="tel" id="telefono" formControlName="telefono">
+        <div *ngIf="form['telefono'].invalid && form['telefono'].touched" class="error">
+          <span *ngIf="form['telefono'].errors?.['required']">El teléfono es requerido.</span>
+          <span *ngIf="form['telefono'].errors?.['pattern']">Solo se permiten números.</span>
+          <span *ngIf="form['telefono'].errors?.['maxlength']">No debe superar los 10 dígitos.</span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+      <label>¿Cuál es tu juego favorito?</label>
+      <div *ngFor="let juego of juegosFavoritos" class="radio-option">
+        <input type="radio" [value]="juego" formControlName="juegoFavorito" [id]="juego">
+        <label [for]="juego">{{ juego }}</label>
+      </div>
+      <div *ngIf="form['juegoFavorito'].invalid && form['juegoFavorito'].touched" class="error">
+        <span>Debes seleccionar un juego.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="opinion">¿Qué es lo que más te gusta de la Sala de Juegos?</label>
+      <textarea id="opinion" rows="4" formControlName="opinionJuegos"></textarea>
+      <div *ngIf="form['opinionJuegos'].invalid && form['opinionJuegos'].touched" class="error">
+        <span>Tu opinión es requerida.</span>
+      </div>
+    </div>
+
+    <div class="form-group" formGroupName="mejoraria">
+      <label>¿Qué aspecto de los juegos mejorarías? (marca al menos uno)</label>
+      <div class="checkbox-option">
+        <input type="checkbox" id="graficos" formControlName="graficos">
+        <label for="graficos">Gráficos y Animaciones</label>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" id="rendimiento" formControlName="rendimiento">
+        <label for="rendimiento">Rendimiento y Velocidad</label>
+      </div>
+      <div class="checkbox-option">
+        <input type="checkbox" id="masJuegos" formControlName="masJuegos">
+        <label for="masJuegos">Añadir más juegos</label>
+      </div>
+      <div *ngIf="encuestaForm.get('mejoraria')?.invalid && encuestaForm.get('mejoraria')?.touched" class="error">
+        <span>Debes seleccionar al menos una opción.</span>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="encuestaForm.invalid">Enviar Encuesta</button>
+  </form>
+
+  <ng-template #gracias>
+    <div class="success-message">
+      <h2>{{ mensajeEnviado }}</h2>
+      <p>Tus respuestas han sido guardadas.</p>
+    </div>
+  </ng-template>
+
+</div>

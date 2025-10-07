@@ -11,22 +11,22 @@ export class GameList {
     {
       nombre: 'Ahorcado',
       ruta: '/games/ahorcado',
-      imagen: 'assets/images/games/ahorcado.png'
+      imagen: 'assets/images/ahorcado.png'
     },
     {
       nombre: 'Mayor o Menor',
       ruta: '/games/mayor-menor',
-      imagen: 'assets/images/games/mayor-menor.png'
+      imagen: 'assets/images/mayor-menor.png'
     },
     {
       nombre: 'Preguntados',
       ruta: '/games/preguntados',
-      imagen: 'assets/images/games/preguntados.png'
+      imagen: 'assets/images/preguntados.png'
     },
     {
       nombre: 'Simón Dice',
       ruta: '/games/simon-dice',
-      imagen: 'assets/images/games/simon-dice.png'
+      imagen: 'assets/images/simon-dice.png'
     }
   ];
 }

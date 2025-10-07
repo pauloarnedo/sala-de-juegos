@@ -1,9 +1,3 @@
-.game-container {
-  text-align: center;
-  max-width: 600px;
-  margin: auto;
-}
-
 .score {
   font-size: 1.5rem;
   font-weight: bold;
@@ -20,7 +14,7 @@
   img {
     width: 180px;
     height: 180px;
-    image-rendering: pixelated; // Para que se vea estilo retro
+    image-rendering: pixelated;
   }
 
   .loader {
@@ -49,8 +43,6 @@ button {
   .incorrect { color: #e74c3c; }
 }
 
-// ... tus otros estilos ...
-
 .stats-container {
   display: flex;
   justify-content: space-around;
@@ -60,7 +52,7 @@ button {
 }
 
 .lives {
-  color: #e74c3c; // Rojo para el corazón de las vidas
+  color: #e74c3c;
 }
 
 .game-over {
