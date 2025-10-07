@@ -1,14 +1,18 @@
-<div class="chat-container">
+<div class="chat-container bloque-contenedor">
   <h1>Sala de Chat</h1>
-  <div class="messages-area">
-    <div *ngFor="let msg of messages$ | async" class="message">
-      <div class="message-header">
-        <span class="user">{{ msg.user }}</span>
-        <span class="timestamp">{{ msg.createdAt?.toDate() | date:'shortTime' }}</span>
-      </div>
-      <p class="text">{{ msg.text }}</p>
+
+  <div class="messages-area" #scrollMe>
+    <ng-container *ngFor="let msg of messages$ | async">
+  <div class="message" [ngClass]="{'own-message': msg.user === currentUserEmail}">
+    <div class="message-header">
+      <span class="user" *ngIf="msg.user !== currentUserEmail">{{ msg.user }}</span>
+      <span class="timestamp">{{ msg.createdAt?.toDate() | date:'shortTime' }}</span>
     </div>
+    <p class="text">{{ msg.text }}</p>
   </div>
+</ng-container>
+  </div>
+
   <div class="input-area">
     <input [formControl]="messageControl" (keyup.enter)="sendMessage()" placeholder="Escribe tu mensaje...">
     <button (click)="sendMessage()">Enviar</button>

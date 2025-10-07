@@ -8,7 +8,7 @@ import { Encuesta } from './pages/encuesta/encuesta';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: Home },
+  { path: 'home', component: Home, canActivate: [authGuard] },
   { path: 'login', component: Login },
   { path: 'quien-soy', component: QuienSoy },
   { path: 'registro', component: Registro },

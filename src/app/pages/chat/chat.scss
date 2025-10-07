@@ -7,35 +7,61 @@
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
 .messages-area {
   flex-grow: 1;
   overflow-y: auto;
   padding: 1rem;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
 }
+
+.own-message {
+  align-self: flex-end;
+  background-color: #d1eaff;
+}
+
 .message {
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: #f1f1f1;
-  border-radius: 5px;
+  border-radius: 15px;
+  max-width: 70%;
+  align-self: flex-start;
 }
+
+.own-message {
+  align-self: flex-end;
+  background-color: #d1eaff;
+}
+
 .message-header {
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
   color: #555;
+  margin-bottom: 0.25rem;
 }
-.user { font-weight: bold; }
+
+.user { 
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
 .input-area {
   display: flex;
   padding: 1rem;
+  background-color: #f9f9f9;
 }
+
 input {
   flex-grow: 1;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
 button {
   margin-left: 1rem;
   padding: 0.5rem 1rem;
