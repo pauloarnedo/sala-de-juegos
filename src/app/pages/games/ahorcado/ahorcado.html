@@ -8,10 +8,6 @@
     <p class="mistakes">Errores: {{ errores }} / {{ maximoErrores }}</p>
   </div>
 
-  <div class="controls" *ngIf="puedeFinalizar && !juegoTerminado">
-    <button (click)="finalizarPartida()">Finalizar Partida</button>
-  </div>
-
   <div class="keyboard" *ngIf="!juegoTerminado && mensajeDeEstado === ''">
     <div *ngFor="let fila of filasTeclado" class="keyboard-row">
       <button 
@@ -21,6 +17,10 @@
         {{ letra }}
       </button>
     </div>
+  </div>
+
+  <div class="controls" *ngIf="puedeFinalizar && !juegoTerminado">
+    <button class="finalizar-partida" (click)="finalizarPartida()">Finalizar Partida</button>
   </div>
 
   <div class="game-over">

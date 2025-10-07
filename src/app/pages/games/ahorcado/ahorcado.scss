@@ -1,3 +1,7 @@
+.game-container{
+  text-align:center;
+}
+
 .word-display {
   font-size: 2.5rem;
   letter-spacing: 0.5rem;
@@ -34,6 +38,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   margin:0 5px;
+  padding:0;
 
   &:disabled {
     background-color: #95a5a6;
@@ -50,3 +55,5 @@
   padding: 10px 20px;
   font-size: 1rem;
 }
+
+.finalizar-partida{margin-top:20px;}

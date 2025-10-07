@@ -1,17 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    text-decoration:none;
+}
+
 body {
   font-family: "Orbitron", sans-serif;
   margin: 0;
   background-image:url("assets/images/background.png");
 }
 
+button{
+    font-family: "Orbitron", sans-serif !important;
+    padding: 0.5rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+    border:none;
+}
+
+button:hover{
+    background-color: #2980b9;
+    cursor:pointer;
+}
+
 .bloque-contenedor{
     width: 90%;
     max-width: 800px;
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 4rem;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #f9f9f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
+
+    border: 0.2rem solid #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 .2rem #fff,
+            0 0 .2rem #fff,
+            0 0 2rem #007ee3,
+            0 0 0.8rem #007ee3,
+            0 0 2.8rem #007ee3,
+            inset 0 0 1.3rem #007ee3;
 }
