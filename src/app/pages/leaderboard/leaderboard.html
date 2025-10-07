@@ -1,1 +1,56 @@
-<p>leaderboard works!</p>
+<div class="leaderboard-container">
+  <h1>🏆 Leaderboard 🏆</h1>
+  <p>Los 3 mejores puntajes de todos los tiempos.</p>
+
+  <div *ngIf="isLoading" class="loader">Cargando puntajes...</div>
+
+  <div *ngIf="!isLoading" class="boards-grid">
+    <div class="board">
+      <h3>Ahorcado</h3>
+      <ol>
+        <li *ngFor="let res of mejoresAhorcado; index as i">
+          <span class="rank">{{ i + 1 }}</span>
+          <span class="user">{{ res.emailUsuario }}</span>
+          <span class="score">{{ res.puntaje }} pts</span>
+        </li>
+      </ol>
+      <p *ngIf="mejoresAhorcado.length === 0">Aún no hay puntajes para este juego.</p>
+    </div>
+
+    <div class="board">
+      <h3>Mayor o Menor</h3>
+      <ol>
+        <li *ngFor="let res of mejoresMayorMenor; index as i">
+          <span class="rank">{{ i + 1 }}</span>
+          <span class="user">{{ res.emailUsuario }}</span>
+          <span class="score">{{ res.puntaje }} pts</span>
+        </li>
+      </ol>
+      <p *ngIf="mejoresMayorMenor.length === 0">Aún no hay puntajes para este juego.</p>
+    </div>
+
+    <div class="board">
+      <h3>Preguntados</h3>
+      <ol>
+        <li *ngFor="let res of mejoresPreguntados; index as i">
+          <span class="rank">{{ i + 1 }}</span>
+          <span class="user">{{ res.emailUsuario }}</span>
+          <span class="score">{{ res.puntaje }} pts</span>
+        </li>
+      </ol>
+      <p *ngIf="mejoresPreguntados.length === 0">Aún no hay puntajes para este juego.</p>
+    </div>
+
+    <div class="board">
+      <h3>Simón Dice</h3>
+      <ol>
+        <li *ngFor="let res of mejoresSimonDice; index as i">
+          <span class="rank">{{ i + 1 }}</span>
+          <span class="user">{{ res.emailUsuario }}</span>
+          <span class="score">{{ res.puntaje }} pts</span>
+        </li>
+      </ol>
+      <p *ngIf="mejoresSimonDice.length === 0">Aún no hay puntajes para este juego.</p>
+    </div>
+  </div>
+</div>

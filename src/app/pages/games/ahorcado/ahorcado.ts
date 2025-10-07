@@ -25,21 +25,18 @@ export class Ahorcado {
   juegoTerminado = false;
   mensajeDeEstado = '';
 
-  // --- NUEVAS VARIABLES ---
   puntaje = 0;
-  puedeFinalizar = false; // Controla la visibilidad del botón "Finalizar Partida"
+  puedeFinalizar = false;
 
   constructor() {
     this.iniciarPartida();
   }
 
-  // Inicia una sesión de juego completa, reseteando el puntaje
   iniciarPartida() {
     this.puntaje = 0;
     this.iniciarNuevaPalabra();
   }
 
-  // Prepara una nueva palabra, pero mantiene el puntaje actual
   private iniciarNuevaPalabra() {
     this.palabraAAdivinar = this.listaDePalabras[Math.floor(Math.random() * this.listaDePalabras.length)];
     this.palabraMostrada = '_ '.repeat(this.palabraAAdivinar.length);
@@ -47,7 +44,7 @@ export class Ahorcado {
     this.errores = 0;
     this.juegoTerminado = false;
     this.mensajeDeEstado = '';
-    this.puedeFinalizar = true; // <-- Permite finalizar la partida al inicio de una palabra
+    this.puedeFinalizar = true;
   }
 
   adivinarLetra(letra: string) {
@@ -55,7 +52,7 @@ export class Ahorcado {
       return;
     }
     
-    this.puedeFinalizar = false; // <-- Oculta el botón después del primer intento
+    this.puedeFinalizar = false;
     this.letrasAdivinadas.add(letra);
 
     if (this.palabraAAdivinar.includes(letra)) {
@@ -67,7 +64,6 @@ export class Ahorcado {
     }
   }
 
-  // Nueva función para el botón "Finalizar Partida"
   finalizarPartida() {
     this.juegoTerminado = true;
     this.mensajeDeEstado = `¡Partida finalizada! Tu puntaje final es: ${this.puntaje}`;
@@ -84,10 +80,9 @@ export class Ahorcado {
 
   private verificarVictoria() {
     if (!this.palabraMostrada.includes('_')) {
-      // En lugar de terminar el juego, suma puntos y pasa a la siguiente palabra
-      this.puntaje += 1; // 1 punto por palabra adivinada
+      this.puntaje += 1;
       this.mensajeDeEstado = '¡Palabra correcta! Cargando siguiente...';
-      setTimeout(() => this.iniciarNuevaPalabra(), 2000); // Espera 2 seg y carga otra palabra
+      setTimeout(() => this.iniciarNuevaPalabra(), 2000);
     }
   }
 

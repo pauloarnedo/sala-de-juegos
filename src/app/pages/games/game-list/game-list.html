@@ -1,0 +1,11 @@
+<div class="list-container">
+  <h1>Sala de Juegos</h1>
+  <p>Elige un juego para empezar a divertirte.</p>
+  <div class="games-grid">
+    <div *ngFor="let juego of juegos" class="game-card">
+      <img [src]="juego.imagen" [alt]="juego.nombre">
+      <h3>{{ juego.nombre }}</h3>
+      <a [routerLink]="juego.ruta" class="play-button">Jugar</a>
+    </div>
+  </div>
+</div>
